@@ -9,7 +9,7 @@ import traceback
 
 from xml.etree import ElementTree
 
-execfile("/mnt/xvdb/scripts/send_mail.py")
+execfile("./send_mail.py")
 
 stock_dict = {}
 yes_stock_dict = {}
@@ -29,7 +29,7 @@ def isBan(yesPrice, curPrice):
 
 def buildDict():
   try:
-      db_conn=MySQLdb.connect(host='localhost',user='root',passwd='liuzhao2010',db='stock',port=3306)
+      db_conn=MySQLdb.connect(host='localhost',user='root',passwd='LIUzhao2010!',db='stock',port=3306)
       cur=db_conn.cursor()
       cur.execute('select distinct stock_id from daily')
       results = cur.fetchall()
@@ -45,7 +45,7 @@ def buildDict():
 
 def fetch():
   try:
-    db_conn = MySQLdb.connect(host='localhost',user='root',passwd='liuzhao2010',db='stock',port=3306)
+    db_conn = MySQLdb.connect(host='localhost',user='root',passwd='LIUzhao2010!',db='stock',port=3306)
     db_cur = db_conn.cursor()
   except MySQLdb.Error,e:
     sys.stderr.write("Mysql Error %d: %s\n" % (e.args[0], e.args[1]))

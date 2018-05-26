@@ -1,5 +1,5 @@
 use stock;
-CREATE TABLE `testgbk` (
+CREATE TABLE `daily` (
   `stock_id` varchar(16) NOT NULL DEFAULT '',
   `name` varchar(32) DEFAULT NULL,
   `open_price` double DEFAULT NULL,

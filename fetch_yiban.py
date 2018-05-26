@@ -13,7 +13,7 @@ from email.utils import COMMASPACE,formatdate
 import traceback
  
 
-execfile("/mnt/xvdb/scripts/send_mail.py")
+execfile("./send_mail.py")
 
 stock_dict = {}
 yes_stock_dict = {}
@@ -22,13 +22,13 @@ zhen_dict = {}
 
 
 def buildDict():
-  zhen_file = open('/mnt/xvdb/scripts/zhen.log')
+  zhen_file = open('./zhen.log')
   for line in zhen_file.readlines():
     line = line.strip()
     sp = line.split(' ')
     zhen_dict[sp[0]] = line
   try:
-    daban_file = open('/mnt/xvdb/scripts/stock_id.dat')
+    daban_file = open('./stock_id.dat')
     count = 0
     stocks = ""
     for line in daban_file.readlines():
@@ -36,7 +36,7 @@ def buildDict():
       if line.startswith('sz') or line.startswith('sh'):
         quick_check_dict['s_' + line] = 1
     print len(quick_check_dict)
-    yes_file = open('/mnt/xvdb/scripts/stock_id.yes')
+    yes_file = open('./stock_id.yes')
     count = 0
     stocks = ""
     for line in yes_file.readlines():
@@ -136,6 +136,6 @@ if __name__ == "__main__":
       sys.stderr.write("quick Check error %s\n" % e)
     time.sleep(20)
 
-  f = open('/mnt/xvdb/scripts/stock_id.yes', 'w')
+  f = open('./stock_id.yes', 'w')
   for key,value in yes_stock_dict.items():
     f.write(key + "," + str(value) + "\n")

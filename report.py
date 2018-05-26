@@ -13,8 +13,8 @@ import traceback
 
 from xml.etree import ElementTree
 
-execfile("/mnt/xvdb/scripts/send_mail.py")
-execfile("/mnt/xvdb/scripts/base_util.py")
+execfile("./send_mail.py")
+execfile("./base_util.py")
 
 stock_dict = {}
 yes_stock_dict = {}
@@ -33,7 +33,7 @@ print todaystr
 
 def buildDict():
   try:
-      db_conn=MySQLdb.connect(host='localhost',user='root',passwd='liuzhao2010',db='stock',port=3306)
+      db_conn=MySQLdb.connect(host='localhost',user='root',passwd='LIUzhao2010!',db='stock',port=3306)
       cur=db_conn.cursor()
       cur.execute('select distinct stock_id from daily where date = %s', todaystr)
       results = cur.fetchall()
@@ -49,7 +49,7 @@ def buildDict():
 
 def fetch():
   try:
-    db_conn = MySQLdb.connect(host='localhost',user='root',passwd='liuzhao2010',db='stock',port=3306)
+    db_conn = MySQLdb.connect(host='localhost',user='root',passwd='LIUzhao2010!',db='stock',port=3306)
     db_cur = db_conn.cursor()
   except MySQLdb.Error,e:
     sys.stderr.write("Mysql Error %d: %s\n" % (e.args[0], e.args[1]))
@@ -63,7 +63,7 @@ def fetch():
   die_ban_num = 0
   low_die_ban_num = 0
 
-  yi_zi_file = open('/mnt/xvdb/scripts/yi_zi.log', 'w')
+  yi_zi_file = open('./yi_zi.log', 'w')
   for i in range(0, len(stock_ids)):
     stock_id = stock_ids[i]
     try:
@@ -102,12 +102,12 @@ def fetch():
   txt = txt + "die ting: " + str(die_ban_num) + "\n"
   txt = txt + "low die ting: " + str(low_die_ban_num) + "\n"
 
-  daban_file = open('/mnt/xvdb/scripts/da_ban.log')
+  daban_file = open('./da_ban.log')
   txt = txt + "da ban: " + str(len(daban_file.readlines())) + "\n"
   
   # yiban log
   txt = txt + "==================\nyi ban log:\n"
-  yiban_log_file = open('/mnt/xvdb/log/yiban_log_' + todaystr)
+  yiban_log_file = open('./yiban_log_' + todaystr)
   for line in yiban_log_file.readlines():
     line = line.strip()
     if line.find('%') > 0:

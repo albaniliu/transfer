@@ -19,7 +19,7 @@ def fetch():
   idDict = {}
   
   try:
-    db_conn = MySQLdb.connect(host='localhost',user='root',passwd='liuzhao2010',db='stock',port=3306)
+    db_conn = MySQLdb.connect(host='localhost',user='root',passwd='LIUzhao2010!',db='stock',port=3306)
     db_cur = db_conn.cursor()
   except MySQLdb.Error,e:
     sys.stderr.write("Mysql Error %d: %s\n" % (e.args[0], e.args[1]))
