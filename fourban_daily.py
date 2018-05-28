@@ -57,7 +57,7 @@ def fetch():
 #  for i in range(0, 1):
     stock_id = stock_ids[i]
     try:
-      db_cur.execute('select date,current_price,highest_price,lowest_price,open_price from daily where stock_id = %s and date > %s', [stock_id, beforestr])
+      db_cur.execute('select date,current_price,highest_price,lowest_price,open_price,yesterday_close_price from daily where stock_id = %s and date > %s', [stock_id, beforestr])
     except MySQLdb.Error,e:
       sys.stderr.write("Mysql Error %d: %s\n" % (e.args[0], e.args[1]))
     results = db_cur.fetchall()
@@ -65,8 +65,8 @@ def fetch():
     count = 0
     ok = False
     history_list = []
-    for j in range(1, len(results)):
-      yes_price = float(results[j-1][1])
+    for j in range(0, len(results)):
+      yes_price = float(results[j][5])
       today_price = float(results[j][1])
       highest_price = float(results[j][2])
       lowest_price = float(results[j][3])

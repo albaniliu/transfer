@@ -35,7 +35,7 @@ def buildDict():
   try:
       db_conn=MySQLdb.connect(host='localhost',user='root',passwd='LIUzhao2010!',db='stock',port=3306)
       cur=db_conn.cursor()
-      cur.execute('select distinct stock_id from daily where date = %s', todaystr)
+      cur.execute('select distinct stock_id from daily where date = %s', [todaystr])
       results = cur.fetchall()
       for r in results:
         yes_stock_dict[r[0]] = 1
@@ -107,7 +107,7 @@ def fetch():
   
   # yiban log
   txt = txt + "==================\nyi ban log:\n"
-  yiban_log_file = open('./yiban_log_' + todaystr)
+  yiban_log_file = open('./log/fetch_yiban_' + todaystr)
   for line in yiban_log_file.readlines():
     line = line.strip()
     if line.find('%') > 0:
